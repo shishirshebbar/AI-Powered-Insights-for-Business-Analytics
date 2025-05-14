@@ -1,0 +1,20 @@
+@import "tailwindcss";
+/* This CSS must be in a .css file or <style> tag */
+/* This CSS must be in a .css file or <style> tag */
+@keyframes panBackground {
+  0% {
+    background-position: 0% 0%; /* Start with the left edge of the background image aligned with the left edge of the element */
+  }
+  100% {
+    background-position: 100% 0%; /* End with the right edge of the background image aligned with the left edge of the element */
+  }
+}
+
+/* If you kept the rotating-background class for applying the animation */
+.rotating-background {
+  /* Keep your existing styles like position, size, z-index, background-size, etc. */
+  /* ... */
+
+  /* Apply the new animation */
+  animation: panBackground 60s linear infinite; /* Adjust duration (e.g., 60s) and speed as needed */
+}
