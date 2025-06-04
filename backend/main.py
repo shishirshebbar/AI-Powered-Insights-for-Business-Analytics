@@ -43,13 +43,19 @@ async def generate_sql_route(query: QueryRequest):
     if "average opening price" in prompt:
         return {"sql_query": "SELECT ticker_symbol, AVG(opening_price) as avg_opening_price FROM uploaded_data GROUP BY ticker_symbol;"}
     elif "average closing" in prompt:
-        return {"sql_query":"SELECT AVG(closing_price) AS avg_closing_price FROM uploaded_data"}
-    elif "max closing" in prompt:
-        return {"sql_query":"SELECT MAX(closing_price) AS max_closing_price FROM uploaded_data"}
-    elif "min opening" in prompt:
-        return {"sql_query":"SELECT MIN(opening_price) AS min_opening_price FROM uploaded_data"}
+        return {"sql_query":"SELECT ticker_symbol,AVG(closing_price) AS avg_closing_price FROM uploaded_data GROUP BY ticker_symbol;"}
+    elif "maximum closing" in prompt:
+        return {"sql_query":"SELECT ticker_symbol,MAX(closing_price) AS max_closing_price FROM uploaded_data GROUP BY ticker_symbol;"}
+    elif "maximum opening" in prompt:
+        return {"sql_query":"SELECT ticker_symbol,MAX(opening_price) AS max_opening_price FROM uploaded_data GROUP BY ticker_symbol;"}
+
+    elif "minimum opening" in prompt:
+        return {"sql_query":"SELECT ticker_symbol,MIN(opening_price) AS min_opening_price FROM uploaded_data GROUP BY ticker_symbol;"}
+    elif "minimum closing" in prompt:
+        return {"sql_query":"SELECT ticker_symbol,MIN(closing_price) AS min_closing_price FROM uploaded_data GROUP BY ticker_symbol;"}
+
     elif "highest volume" in prompt:
-        return {"sql_query":"SELECT date, volume FROM uploaded_data ORDER BY volume DESC LIMIT 1"}
+        return {"sql_query":"SELECT ticker_symbol,date, volume FROM uploaded_data ORDER BY volume DESC LIMIT 1"}
     elif "average closing by ticker" in prompt or "group by ticker" in prompt:
         return {"sql_query":"SELECT ticker_symbol, AVG(closing_price) AS avg_close FROM uploaded_data GROUP BY ticker_symbol"}
     else:
