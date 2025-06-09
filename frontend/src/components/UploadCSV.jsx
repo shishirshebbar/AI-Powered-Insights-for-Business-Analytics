@@ -57,21 +57,30 @@ export default function UploadCSV({ onCsvUpload }) {
     }
   };
 
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-      <h2 className="text-xl font-semibold mb-4">📄 Upload CSV File</h2>
-      <input
-        type="file"
-        accept=".csv"
-        onChange={(e) => setFile(e.target.files[0])}
-        className="mb-4"
-      />
-      <button
-        onClick={handleUpload}
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-      >
-        {loading ? <LoadingSpinner /> : "Upload"}
-      </button>
+return (
+  <div className="bg-white p-6 rounded-xl shadow-md mb-8">
+    <h2 className="text-xl font-semibold mb-4">📄 Upload CSV File(Company or Market data)</h2>
+
+    <div className="mb-4">
+      <label className="bg-gray-300 text-red-700 py-2 px-4 rounded cursor-pointer hover:bg-gray-300 inline-block">
+        Choose File
+        <input
+          type="file"
+          accept=".csv"
+          onChange={(e) => setFile(e.target.files[0])}
+          className="hidden"
+        />
+      </label>
+      {file && <span className="ml-2 text-sm text-gray-600">{file.name}</span>}
     </div>
-  );
+
+    <button
+      onClick={handleUpload}
+      className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+    >
+      {loading ? <LoadingSpinner /> : "Upload"}
+    </button>
+  </div>
+);
+
 }
